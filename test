@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -e
+
+BOX="jessie64_containerbox"
+
+echo "### Destroy previous build box of '$BOX' (if exists)"
+vagrant destroy --force
+
+echo "### Update parent box"
+vagrant box update
+
+echo "### Create '$BOX'"
+vagrant up
+
+echo "### Swtich to Console"
+vagrant ssh

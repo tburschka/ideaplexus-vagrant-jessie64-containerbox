@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -e
+
+BOX="jessie64_containerbox"
+
+echo "### Destroy previous build box of '$BOX' (if exists)"
+vagrant destroy --force
+
+echo "### Update parent box"
+vagrant box update
+
+echo "### Create '$BOX'"
+vagrant up
+
+echo "### Export '$BOX'"
+vagrant package
+mv "package.box" "$BOX.box"
+
+echo "### Destroy current build box of '$BOX' from"
+vagrant destroy --force
+
+echo "### Add '$BOX' to local repository"
+vagrant box add "$BOX" "$BOX.box" --force

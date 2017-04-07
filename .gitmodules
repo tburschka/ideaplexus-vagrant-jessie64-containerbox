@@ -1,0 +1,3 @@
+[submodule "provisioning"]
+	path = provisioning
+	url = git@github.com:tburschka/ideaplexus-provisioning-scripts.git
